@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brilliant Mind</title>
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <meta name = "viewport" content ="width = device-width, initial-scale = 1">
+    Access-Control-Allow-Origin: *
+    
+</head>
+
+<body>
+
+<div id = "top">
+    <img src="../images/title.png" height="13" width="700"/>
+    <div id = "logo-name">BRILLIANT MIND</div>
+    <img src="../images/title.png" height="13" width="700"/>
+    <div id = "navigation">
+        <a href = "#about-us">About us</a>
+        <a href = "#tools">Tools</a>
+        <a href = "news.html">News</a>
+        <a href = "#impressum">Impressum</a>
+    </div>
+
+    <div id = "image">
+        <img height="433" width="1800" loading="lazy" src="../images/index_title.png" height="433" width="1800"/>
+    </div>
+</div>
+<div id = "main"></div>
+<section id = "tools">
+    <h2>TOOLS</h2>
+    <div id = "boxCalendar">
+        <a class="textBox" href="calendar.html">Calendar</a>
+        <img loading="lazy" src="../images/index_Calendar.jpg" id="index_Calendar">
+    </div>
+    <div id = "boxEShop">
+        <a class="textBox" href="eshop.html">Webshop</a>
+        <img loading="lazy" src="../images/index_Webshop.jpg" id="index_Calendar">
+    </div>
+    <div id = "boxChat">
+        <a class="textBox"> Chat</a>
+        <img loading="lazy" src="../images/index_Chat.jpg" id="index_Calendar">
+    </div>
+</section>
+
+<section id = "news">
+    <h2>NEWS</h2>
+    <div id="newsdiv">
+
+        <form class="search" action="">
+            <input class="input" type="text" placeholder="Ich will News bezüglich..." />
+            <input type="submit" value="Suchen"/>
+
+        </form>
+        <div class="container">
+        <ul class="news-list"></ul>
+        </div>
+
+        <script>
+            const searchForm = document.querySelector('.search');
+            const input=document.querySelector('.input');
+            const newsList = document.querySelector('.news-list');
+            
+            searchForm.addEventListener('submit', retrieve)
+
+            function retrieve(e){
+                
+                newsList.innerHTML = ''
+
+                e.preventDefault()
+                
+                const apiKey='572599cc9c194bf8a7942a038580ecab'
+                
+                let topic = input.value;
+                let url = ' https://newsapi.org/v2/everything?q=${topic}country=at&apiKey=572599cc9c194bf8a7942a038580ecab'
+                
+                
+                fetch(url).then((res)=>{
+                    returnres.json()
+                }).then((data)=>{
+                    console.log(data)
+                    data.articles.array.forEach(article => {
+                     let li = document.createElement('li');
+                     let a = document.createElement('a');
+                     a.setAttribute('href', article.url );
+                     a.setAttribute('target', '_blank');
+                     a.textContent = article.title;
+                     li.appendChild(a);
+                     newsList.appendChild(li);
+                    });
+                })
+
+               
+                console.log(topic)
+            }
+
+        </script>
+      <!-- <iframe class="responsive-iframe" src="https://www.orf.at"></iframe> -->
+    </div>
+</section>
+<section id = "about-us">
+    <h2>ABOUT US</h2>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+</section>
+
+<section id = "impressum">
+    <h2>IMPRESSUM</h2>
+    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    </p>
+</section>
+
+<div id = "footer">
+    Copyright 2021 | Brilliant Mind
+</div>
+</body>
+
+</html>
